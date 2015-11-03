@@ -1,9 +1,9 @@
-## Translate md to reveal.
+# Translate md to reveal.
 
 Modified from [reveal-md](https://github.com/webpro/reveal-md)
 
 
-## Extra Usage Hint:
+# Extra Usage Hint:
 
 ### Fragment:
 
