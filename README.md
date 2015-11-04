@@ -1,6 +1,7 @@
 # 用markdonw写PPT（Translate md to reveal）
 
 由[reveal-md](https://github.com/webpro/reveal-md)更改而来
+
 Modified from [reveal-md](https://github.com/webpro/reveal-md)
 
 
@@ -26,6 +27,7 @@ or
 </iframe>
 ```
 如果想在每页或每fragment进入时候加载iframe中内容，就将src放在data-src下即可。
+
 （Put src in `data-src` attribute to enable auto reload iframe when
 page changed or fragment changed）
 
@@ -33,5 +35,7 @@ page changed or fragment changed）
 ### 监视文件改变自动编译（Watch）
 
 加入`-w`参数：
+
+（using `-w`）
 
 `md2reveal -w mySlides.md`
