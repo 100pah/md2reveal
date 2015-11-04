@@ -67,11 +67,11 @@ function output(html) {
     var assetDirPath = path.join(opts.userBasePath, userAssetName);
 
     if (!fs.existsSync(assetDirPath)) {
-        if (!fs.statSync(assetDirPath).isDirectory()) {
-            console.error(assetDirPath + ' should be a directory!' );
-            return;
-        }
         fs.mkdirSync(assetDirPath);
+    }
+    else if (!fs.statSync(assetDirPath).isDirectory()) {
+        console.error(assetDirPath + ' should be a directory!' );
+        return;
     }
 
     var resultHTMLPath = path.join(opts.userBasePath, resultFileNameBase + '.html');
