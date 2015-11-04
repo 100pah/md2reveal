@@ -115,3 +115,12 @@
 
 <iframe style="width: 700px; height: 500px" data-src="http://echarts.baidu.com/doc/example/line1.html">
 </iframe>
+
+
+---
+
+使用 `Node: ...` 是注释。
+reveal演示的时候，按`s`键，能开启后台看注释的模式。
+
+Note:
+这里的内容在注释中。

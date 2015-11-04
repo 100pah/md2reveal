@@ -34,7 +34,7 @@ using `-w`
 
 
 
-# Markdown中一些额外的使用提示（Extra Usage Hint of Markdown）
+# Markdown中一些额外的使用提示（Extra Usage Hints of Markdown）
 
 ### 每页中的分步显示（Fragment）
 
@@ -59,4 +59,18 @@ or
 
 Put src in `data-src` attribute to enable auto reload iframe when
 page changed or fragment changed
+
+### 写注释（Note）
+
+```
+Note:
+这里的内容在注释中
+```
+
+# Reveal演示的一些提示（Presentation Hints）
+
+reveal演示的时候，按`s`键，能开启后台看注释的模式。
+
+Try pressing `s` when presenting.
+
 
