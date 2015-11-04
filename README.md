@@ -25,6 +25,10 @@ or
 <iframe style="width: 700px; height: 500px" data-src="./asset/ec-next/test/area.html">
 </iframe>
 ```
+如果想在每页或每fragment进入时候加载iframe中内容，就将src放在data-src下即可。
+（Put src in `data-src` attribute to enable auto reload iframe when
+page changed or fragment changed）
+
 
 ### 监视文件改变自动编译（Watch）
 
