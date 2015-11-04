@@ -8,8 +8,7 @@ var mdMore = require('./mdMore');
 
 var baseBasePath = path.join(__dirname, '..');
 var userAssetName = 'asset';
-var libVersion = '-0';
-var md2revealLibNameBase = 'md2reveal';
+var md2revealLibNameBase = 'md2reveal-';
 
 var opts = {
     assetPath: path.join(__dirname, '../asset'),
@@ -29,6 +28,7 @@ function start(options) {
     opts.verticalSeparator = options.verticalSeparator || opts.verticalSeparator;
     opts.revealOptions = options.revealOptions || {};
     opts.mdPath = options.mdPath;
+    opts.libVersion = options.libVersion
 
     var html = render();
     output(html);
@@ -53,7 +53,7 @@ function render() {
             highlightTheme: opts.highlightTheme,
             slides: slides,
             options: JSON.stringify(opts.revealOptions, null, 2),
-            libVersion: libVersion
+            libName: md2revealLibNameBase + opts.libVersion
         });
     }
     else {
@@ -78,7 +78,7 @@ function output(html) {
     fs.writeFileSync(resultHTMLPath, html, {encoding:'utf-8'});
 
     var currMd2revealLibPath = path.join(
-        assetDirPath, md2revealLibNameBase + libVersion
+        assetDirPath, md2revealLibNameBase + opts.libVersion
     );
 
     // If no old version exists, do nothing,
@@ -94,7 +94,7 @@ function output(html) {
     // Delete lib with old version if exists.
     var paths = fs.readdirSync(assetDirPath);
     paths.forEach(function (p) {
-        if (p !== md2revealLibNameBase + libVersion
+        if (p !== md2revealLibNameBase + opts.libVersion
             && p.indexOf(md2revealLibNameBase) === 0
         ) {
             rmdir(path.join(assetDirPath, p));

@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Reveal.js</title>
-        <link rel="stylesheet" href="./asset/md2reveal{{{libVersion}}}/css/reveal.css">
-        <link rel="stylesheet" href="./asset/md2reveal{{{libVersion}}}/{{{theme}}}" id="theme">
-        <link rel="stylesheet" href="./asset/md2reveal{{{libVersion}}}/{{{themeMine}}}" id="themeMine">
+        <link rel="stylesheet" href="./asset/{{{libName}}}/css/reveal.css">
+        <link rel="stylesheet" href="./asset/{{{libName}}}/{{{theme}}}" id="theme">
+        <link rel="stylesheet" href="./asset/{{{libName}}}/{{{themeMine}}}" id="themeMine">
         <!-- For syntax highlighting -->
-        <link rel="stylesheet" href="./asset/md2reveal{{{libVersion}}}/lib/css/{{{highlightTheme}}}.css">
+        <link rel="stylesheet" href="./asset/{{{libName}}}/lib/css/{{{highlightTheme}}}.css">
     </head>
     <body>
 
@@ -15,9 +15,9 @@
             <div class="slides">{{{slides}}}</div>
         </div>
 
-        <script src="./asset/md2reveal{{{libVersion}}}/lib/js/head.min.js"></script>
-        <script src="./asset/md2reveal{{{libVersion}}}/js/reveal.js"></script>
-        <script src="./asset/md2reveal{{{libVersion}}}/js/md2reveal.js"></script>
+        <script src="./asset/{{{libName}}}/lib/js/head.min.js"></script>
+        <script src="./asset/{{{libName}}}/js/reveal.js"></script>
+        <script src="./asset/{{{libName}}}/js/md2reveal.js"></script>
 
         <script>
             function extend() {
@@ -35,12 +35,12 @@
 
             // Optional libraries used to extend on reveal.js
             var deps = [
-              { src: './asset/md2reveal{{{libVersion}}}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-              { src: './asset/md2reveal{{{libVersion}}}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
-              { src: './asset/md2reveal{{{libVersion}}}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
-              { src: './asset/md2reveal{{{libVersion}}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-              { src: './asset/md2reveal{{{libVersion}}}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-              { src: './asset/md2reveal{{{libVersion}}}/plugin/math/math.js', async: true }
+              { src: './asset/{{{libName}}}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: './asset/{{{libName}}}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './asset/{{{libName}}}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './asset/{{{libName}}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: './asset/{{{libName}}}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+              { src: './asset/{{{libName}}}/plugin/math/math.js', async: true }
             ];
 
             // default options to init reveal.js

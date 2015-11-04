@@ -4,3 +4,6 @@ strong {
 .reveal section img {
     border-width: 0;
 }
+.reveal section iframe {
+    display: block;
+}

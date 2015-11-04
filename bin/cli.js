@@ -94,6 +94,7 @@ if(!commander.highlightTheme && revealOptions.highlightTheme) {
 }
 
 var startOpt = {
+    libVersion: pkg.version,
     basePath: basePath,
     mdPath: baseName,
     theme: theme,
