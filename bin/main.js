@@ -4,16 +4,15 @@ var mustache = require('mustache');
 var md = require('reveal.js/plugin/markdown/markdown');
 var cpdir = require('./cpdir');
 var rmdir = require('./rmdir');
+var mdMore = require('./mdMore');
 
 var baseBasePath = path.join(__dirname, '..');
 var userAssetName = 'asset';
-var enterName = 'main.js';
-var md2revealLibName = 'md2reveal';
+var libVersion = '-0';
+var md2revealLibNameBase = 'md2reveal';
 
 var opts = {
-    userBasePath: process.cwd(),
     assetPath: path.join(__dirname, '../asset'),
-    revealBasePath: path.resolve(require.resolve('reveal.js'), '..', '..'),
     template: fs.readFileSync(path.join(baseBasePath, 'template', 'reveal.html')).toString(),
     theme: 'black',
     highlightTheme: 'zenburn',
@@ -46,12 +45,15 @@ function render() {
         markdown = fs.readFileSync(markdownPath).toString();
 
         var slides = md.slidify(markdown, opts);
+        slides = mdMore(slides);
 
         return mustache.to_html(opts.template, { // jshint ignore:line
             theme: opts.theme,
+            themeMine: opts.theme.replace('.css', '-md2reveal.css'),
             highlightTheme: opts.highlightTheme,
             slides: slides,
-            options: JSON.stringify(opts.revealOptions, null, 2)
+            options: JSON.stringify(opts.revealOptions, null, 2),
+            libVersion: libVersion
         });
     }
     else {
@@ -75,12 +77,29 @@ function output(html) {
     var resultHTMLPath = path.join(opts.userBasePath, resultFileNameBase + '.html');
     fs.writeFileSync(resultHTMLPath, html, {encoding:'utf-8'});
 
-    var md2revealLibPath = path.join(assetDirPath, md2revealLibName);
-    if (fs.existsSync(md2revealLibPath)) {
-        rmdir(md2revealLibPath);
+    var currMd2revealLibPath = path.join(
+        assetDirPath, md2revealLibNameBase + libVersion
+    );
+
+    // If no old version exists, do nothing,
+    // otherwise, copy lib.
+    // It is not necessary to do copy every time,
+    // which I think is not good for my SSD disk,
+    // especially when using 'watch'.
+    if (!fs.existsSync(currMd2revealLibPath)) {
+        fs.mkdirSync(currMd2revealLibPath);
+        cpdir(opts.assetPath, currMd2revealLibPath);
     }
-    fs.mkdirSync(md2revealLibPath);
-    cpdir(opts.assetPath, md2revealLibPath);
+
+    // Delete lib with old version if exists.
+    var paths = fs.readdirSync(assetDirPath);
+    paths.forEach(function (p) {
+        if (p !== md2revealLibNameBase + libVersion
+            && p.indexOf(md2revealLibNameBase) === 0
+        ) {
+            rmdir(path.join(assetDirPath, p));
+        }
+    });
 
     console.log('done.');
 }
