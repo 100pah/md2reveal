@@ -6,23 +6,35 @@ Modified from [reveal-md](https://github.com/webpro/reveal-md)
 
 # 使用方式（Usage）
 
-定义命令（Define alias）：
+* 定义命令（Define alias）：
+
 ```
 alias md2reveal="node /your-folder/md2reveal/bin/cli.js"
 ```
 
-开始编译（Compile）：
+* 开始编译（Compile）：
+
 ```
 md2reveal mySlides.md
 ```
 
-生成（Production）：`mySlides.html`
+* 生成（Production）：`mySlides.html`
 
-注意：资源文件（img/css/js...）须放到同级目录下的`asset`文件夹中。
+* 注意：资源文件（img/css/js...）须放到同级目录下的`asset`文件夹中。
 
 Notice: put resource files (img/css/js...), if exists, in the directory named `asset` in the level of the `md` file.
 
-# 一些额外的使用提示（Extra Usage Hint）
+* 监视文件改变自动编译（Watch, if you wish）
+
+加入`-w`参数：
+
+using `-w`
+
+`md2reveal -w mySlides.md`
+
+
+
+# Markdown中一些额外的使用提示（Extra Usage Hint of Markdown）
 
 ### 每页中的分步显示（Fragment）
 
@@ -48,11 +60,3 @@ or
 Put src in `data-src` attribute to enable auto reload iframe when
 page changed or fragment changed
 
-
-### 监视文件改变自动编译（Watch）
-
-加入`-w`参数：
-
-using `-w`
-
-`md2reveal -w mySlides.md`
