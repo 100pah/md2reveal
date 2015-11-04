@@ -28,14 +28,14 @@ or
 ```
 如果想在每页或每fragment进入时候加载iframe中内容，就将src放在data-src下即可。
 
-（Put src in `data-src` attribute to enable auto reload iframe when
-page changed or fragment changed）
+Put src in `data-src` attribute to enable auto reload iframe when
+page changed or fragment changed
 
 
 ### 监视文件改变自动编译（Watch）
 
 加入`-w`参数：
 
-（using `-w`）
+using `-w`
 
 `md2reveal -w mySlides.md`
