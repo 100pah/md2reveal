@@ -6,7 +6,11 @@ Modified from [reveal-md](https://github.com/webpro/reveal-md)
 
 # 使用方式（Usage）
 
-* 定义命令（Define alias）：
+* 安装
+
+    * `git clone`
+    * `npm install`
+    * 定义命令（Define alias）：
 
 ```
 alias md2reveal="node /your-folder/md2reveal/bin/cli.js"
