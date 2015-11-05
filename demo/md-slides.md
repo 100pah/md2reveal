@@ -109,12 +109,10 @@
 ### 嵌入iframe（Embed iframe）
 
 ```
-<iframe style="width: 700px; height: 500px" data-src="http://echarts.baidu.com/doc/example/line1.html">
-</iframe>
+~[70%*500](http://echarts.baidu.com/doc/example/line1.html)
 ```
 
-<iframe style="width: 700px; height: 500px" data-src="http://echarts.baidu.com/doc/example/line1.html">
-</iframe>
+~[70%*500](http://echarts.baidu.com/doc/example/line1.html)
 
 
 ---

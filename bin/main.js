@@ -30,6 +30,11 @@ function start(options) {
     opts.mdPath = options.mdPath;
     opts.libVersion = options.libVersion
 
+    // Path for html, not for node.
+    // opts.revealOptions.math = {
+    //     mathjax: './asset/' + md2revealLibNameBase + opts.libVersion + '/thirdPart/mathJax.js'
+    // };
+
     var html = render();
     output(html);
 }

@@ -52,10 +52,27 @@ or
 ### 嵌入iframe（Embed iframe）
 
 ```
-<iframe style="width: 700px; height: 500px" data-src="./asset/ec-next/test/area.html">
+~[70%*500](http://echarts.baidu.com/doc/example/line1.html)
+```
+
+会被转换为（will be translate to）：
+```
+<iframe style="width: 70%; height: 500px" data-md2r-src="./asset/ec-next/test/area.html">
 </iframe>
 ```
-如果想在每页或每fragment进入时候加载iframe中内容，就将src放在data-src下即可。
+
+宽度高度可以省略（width and height can be omitted）：
+```
+~[*500](http://echarts.baidu.com/doc/example/line1.html)
+```
+```
+~[70%*](http://echarts.baidu.com/doc/example/line1.html)
+```
+```
+~[](http://echarts.baidu.com/doc/example/line1.html)
+```
+
+将src放在data-src下意思是，在每页或每fragment进入时候加载iframe中内容。
 
 Put src in `data-src` attribute to enable auto reload iframe when
 page changed or fragment changed

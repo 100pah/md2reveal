@@ -6,8 +6,8 @@
 
     var CSS_FRAGMENT = 'fragment';
     var CSS_VISIBLE = 'visible';
-    var ATTR_SRC = 'data-src';
-    var ATTR_STYLE = 'data-style';
+    var ATTR_SRC = 'data-md2r-src';
+    var ATTR_STYLE = 'data-md2r-style';
 
     Reveal.addEventListener('ready', function(event) {
         startIFrames(event.currentSlide);

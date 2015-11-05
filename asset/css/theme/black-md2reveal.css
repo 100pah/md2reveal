@@ -6,4 +6,5 @@ strong {
 }
 .reveal section iframe {
     display: block;
+    margin: 40px auto;
 }

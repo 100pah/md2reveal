@@ -39,8 +39,8 @@
               { src: './asset/{{{libName}}}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
               { src: './asset/{{{libName}}}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
               { src: './asset/{{{libName}}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-              { src: './asset/{{{libName}}}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-              { src: './asset/{{{libName}}}/plugin/math/math.js', async: true }
+              { src: './asset/{{{libName}}}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+              // { src: './asset/{{{libName}}}/plugin/math/math.js', async: true }
             ];
 
             // default options to init reveal.js
