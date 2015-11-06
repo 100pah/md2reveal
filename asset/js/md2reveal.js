@@ -10,21 +10,23 @@
     var ATTR_STYLE = 'data-md2r-style';
 
     Reveal.addEventListener('ready', function(event) {
-        startIFrames(event.currentSlide);
+        processIFrames(event.currentSlide, activeIFrame);
     });
 
     Reveal.addEventListener('slidechanged', function(event) {
         // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-        startIFrames(event.currentSlide);
+        processIFrames(event.currentSlide, activeIFrame);
+        processIFrames(event.previousSlide, inactiveIFrame);
     });
 
     Reveal.addEventListener('fragmentshown', function(event) {
         // event.fragment = the fragment DOM element
-        startIFrames(event.fragment);
+        processIFrames(event.fragment, activeIFrame);
     });
 
     Reveal.addEventListener('fragmenthidden', function(event) {
         // event.fragment = the fragment DOM element
+        processIFrames(event.fragment, inactiveIFrame);
     });
 
     Reveal.addEventListener('overviewshown', function(event) {
@@ -33,15 +35,20 @@
     Reveal.addEventListener('overviewhidden', function(event) {
     });
 
-    function startIFrames(container) {
-        if (container.tagName.toLowerCase() === 'iframe') {
-            activeIFrame(container);
+    function processIFrames(container, action) {
+        if (!container) {
+            return;
         }
+
+        if (container.tagName.toLowerCase() === 'iframe') {
+            action(container);
+        }
+
         var iframes = container.querySelectorAll('iframe');
         forEach(iframes, function (iframe) {
             var ancestor = getAncestor(iframe, container, CSS_FRAGMENT);
             if (!ancestor || hasClass(ancestor, CSS_VISIBLE)) {
-                activeIFrame(iframe);
+                action(iframe);
             }
         });
     }
@@ -55,6 +62,10 @@
         if (style) {
             ifrEl.setAttribute('style', style);
         }
+    }
+
+    function inactiveIFrame(ifrEl) {
+        ifrEl.src = 'about:blank';
     }
 
     function uncurry(method) {
