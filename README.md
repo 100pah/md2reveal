@@ -94,4 +94,6 @@ reveal演示的时候，按`s`键，能开启后台看注释的模式。
 
 Try pressing `s` when presenting.
 
+# demo
 
+<https://github.com/100pah/slides/tree/master/segment-fault>
