@@ -21,12 +21,18 @@
 
     Reveal.addEventListener('fragmentshown', function(event) {
         // event.fragment = the fragment DOM element
-        processIFrames(event.fragment, activeIFrame);
+        // event.fragments = []
+        event.fragments.forEach(function (fragment) {
+            processIFrames(fragment, activeIFrame);
+        })
     });
 
     Reveal.addEventListener('fragmenthidden', function(event) {
         // event.fragment = the fragment DOM element
-        processIFrames(event.fragment, inactiveIFrame);
+        // event.fragments = []
+        event.fragments.forEach(function (fragment) {
+            processIFrames(fragment, inactiveIFrame);
+        });
     });
 
     Reveal.addEventListener('overviewshown', function(event) {
