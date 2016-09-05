@@ -36,7 +36,9 @@ using `-w`
 
 `md2reveal -w mySlides.md`
 
+# 语法
 
+参见：<https://github.com/100pah/md2reveal/blob/master/demo/md-slides.md>
 
 # Markdown中一些额外的使用提示（Extra Usage Hints of Markdown）
 
