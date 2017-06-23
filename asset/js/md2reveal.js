@@ -156,12 +156,14 @@
                 url += '#';
             }
 
-            var ifrFlag = HASH_MD2_FRAGMENT + '=' + fragmentInfo.fragmentParam;
-            if (url.indexOf(HASH_MD2_FRAGMENT + '=') < 0) {
-                url += ifrFlag;
-            }
-            else {
-                url.replace(/_md2r_fragment=\d+/, ifrFlag);
+            if (fragmentInfo) {
+                var ifrFlag = HASH_MD2_FRAGMENT + '=' + fragmentInfo.fragmentParam;
+                if (url.indexOf(HASH_MD2_FRAGMENT + '=') < 0) {
+                    url += ifrFlag;
+                }
+                else {
+                    url.replace(/_md2r_fragment=\d+/, ifrFlag);
+                }
             }
 
             ifrEl.src = url;
