@@ -1,15 +1,43 @@
 // Add more tags for convenient.
 
-var FRAGMENT_REG = /\{(\d+)\|([^\}]*?)\}/g;
+var FRAGMENT_REG = /\{([0-9a-zA-Z:_]+)\|([^\}]*?)\}/g;
 var IFRAEM_REG = /~\[([\d.%]*)\*?([\d.%]*)\]\(([^\(\)]+?)\)/g;
+
+var uid = 0;
 
 function process(mdText) {
 
     // {0|xxx} =>
-    // <div class="fragment" data-fragment-index="0">xxx</div>
+    // <div class="fragment" data-fragment-index="0" id="fregment_12341234_0">xxx</div>
+    // {0_2:code_1|xxx} =>
+    // <div class="fragment" data-fragment-index="0" id="fregment_12341234_0">xxx</div>
+    // <div class="fragment" data-fragment-index="2" data-fragement-ref-id="fregment_12341234_0"></div>
+    // <div class="fragment" data-fragment-index="1" data-fragment-param="code" data-fragement-ref-id="fregment_12341234_0"></div>
     mdText = mdText.replace(
         FRAGMENT_REG,
-        '<div class="fragment" data-fragment-index="$1">$2</div>'
+        function (match, fragmentIndex, content) {
+            var mainId = 'fregment_' + Math.random() + '_' + uid++;
+            return fragmentIndex.split('_').map(function (fragIdx, index) {
+                var parsed = fragIdx.match(/^(\d+)(\:([a-zA-Z]+))?$/);
+                if (!parsed || !parsed[0]) {
+                    throw new Error('Illegal fragment index: ' + fragIdx);
+                }
+                fragIdx = parsed[1];
+                fragParam = parsed[3] || '';
+
+                var fragAttrs = ''
+                    + ' data-fragment-index="' + fragIdx + '" '
+                    + ' data-fragment-param="' + fragParam + '" ';
+
+                return !index
+                    ? ('<div class="fragment"' + fragAttrs
+                        + ' id="' + mainId + '" >' + content + '</div>'
+                    )
+                    : ('<div class="fragment"' + fragAttrs
+                        + ' data-fragment-ref-id="' + mainId + '" ></div>'
+                    )
+            }).join('');
+        }
     );
 
     // ~[23*45%](http://xxx.xxx.xxx/xxx) =>
