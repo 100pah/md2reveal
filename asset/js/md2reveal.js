@@ -11,7 +11,9 @@
     var ATTR_FRAGMENT_STACK = 'data-md2r-fragment-stack';
     var ATTR_FRAGMENT_INDEX = 'data-fragment-index';
     var ATTR_FRAGMENT_PARAM = 'data-fragment-param';
+    var ATTR_LAST_SRC_INACTIVE = 'data-last-src-inactive';
     var HASH_MD2_FRAGMENT = '_md2r_fragment_';
+    var ABOUT_BLANK = 'about:blank';
 
     Reveal.addEventListener('ready', function(event) {
         processIFrames(event.currentSlide, activeIFrame);
@@ -105,7 +107,9 @@
     }
 
     function activeIFrame(ifrEl, fragmentInfo) {
-        stepInfoIFrame(ifrEl, fragmentInfo);
+        var url = ifrEl.getAttribute(ATTR_LAST_SRC_INACTIVE);
+        ifrEl.setAttribute(ATTR_LAST_SRC_INACTIVE, '');
+        stepInfoIFrame(ifrEl, fragmentInfo, url);
 
         var style = ifrEl.getAttribute(ATTR_STYLE);
         if (style) {
@@ -114,7 +118,10 @@
     }
 
     function inactiveIFrame(ifrEl) {
-        ifrEl.src = 'about:blank';
+        if (ifrEl.src && ifrEl.src !== ABOUT_BLANK) {
+            ifrEl.setAttribute(ATTR_LAST_SRC_INACTIVE, ifrEl.src);
+        }
+        ifrEl.src = ABOUT_BLANK;
     }
 
     function pushFragmentStack(fragment, fragmentInfo) {
@@ -149,25 +156,29 @@
         }
     }
 
-    function stepInfoIFrame(ifrEl, fragmentInfo) {
-        var url = ifrEl.getAttribute(ATTR_SRC);
-        if (url) {
-            if (url.indexOf('#') < 0) {
-                url += '#';
-            }
-
-            if (fragmentInfo) {
-                var ifrFlag = HASH_MD2_FRAGMENT + '=' + fragmentInfo.fragmentParam;
-                if (url.indexOf(HASH_MD2_FRAGMENT + '=') < 0) {
-                    url += ifrFlag;
-                }
-                else {
-                    url.replace(/_md2r_fragment=\d+/, ifrFlag);
-                }
-            }
-
-            ifrEl.src = url;
+    function stepInfoIFrame(ifrEl, fragmentInfo, url) {
+        if (!url) {
+            url = ifrEl.getAttribute(ATTR_SRC);
         }
+        if (!url) {
+            return;
+        }
+
+        if (url.indexOf('#') < 0) {
+            url += '#';
+        }
+
+        if (fragmentInfo) {
+            var ifrFlag = HASH_MD2_FRAGMENT + '=' + fragmentInfo.fragmentParam;
+            if (url.indexOf(HASH_MD2_FRAGMENT + '=') < 0) {
+                url += ifrFlag;
+            }
+            else {
+                url.replace(/_md2r_fragment=\d+/, ifrFlag);
+            }
+        }
+
+        ifrEl.src = url;
     }
 
     function uncurry(method) {
