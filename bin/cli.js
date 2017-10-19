@@ -12,7 +12,6 @@ var basePath = process.cwd();
 var baseName;
 var filePath;
 var revealPath = path.resolve(require.resolve('reveal.js'), '..', '..');
-var theme = 'black';
 var highlightTheme = 'zenburn';
 
 commander
@@ -31,6 +30,7 @@ if(commander.args.length > 2) {
 }
 
 var pathArg = commander.args[0];
+var theme = commander.theme || 'black';
 
 if (!pathArg) {
     console.error('no path arg');
