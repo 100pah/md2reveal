@@ -36,6 +36,10 @@ using `-w`
 
 `md2reveal -w mySlides.md`
 
+* 使用自定义 theme（Customize theme)
+
+`md2reveal --theme '../../theme/folder/path' mySlides.md`
+
 # 语法
 
 参见：<https://github.com/100pah/md2reveal/blob/master/demo/md-slides.md>
@@ -83,18 +87,30 @@ or
 Put src in `data-src` attribute to enable auto reload iframe when
 page changed or fragment changed
 
-### 写注释（Note）
+### 写注释（Write note）
 
 ```
 Note:
 这里的内容在注释中
 ```
 
+### 使用背景图片（Use background image)
+
+reveal.js 原生支持。（Supported by reveal.js internally.）
+
+```html
+<!--.slide: data-background="./asset/theme/img/end.png" -->
+```
+
+
 # Reveal演示的一些提示（Presentation Hints）
 
-reveal演示的时候，按`s`键，能开启后台看注释的模式。
+revealjs 演示的时候：
 
-Try pressing `s` when presenting.
++ 按`s`键，能开启后台看注释的模式。
++ 按`f`键，全屏。
+
+Try pressing `s`, `f` when presenting.
 
 # demo
 
