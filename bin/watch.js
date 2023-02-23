@@ -12,8 +12,11 @@ function start(opts) {
 
     fs.watch(markdownPath, function (event) {
         if (event === 'change') {
-            console.log(markdownPath + ' changed, auto compile ...');
-            main.start(opts);
+            // Try to avoid occational compile fail.
+            setTimeout(function () {
+                console.log(markdownPath + ' changed, auto compile ...');
+                main.start(opts);
+            }, 500);
         }
     });
 }

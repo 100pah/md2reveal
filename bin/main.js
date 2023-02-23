@@ -28,7 +28,7 @@ function start(options) {
     opts.verticalSeparator = options.verticalSeparator || opts.verticalSeparator;
     opts.revealOptions = options.revealOptions || {};
     opts.mdPath = options.mdPath;
-    opts.libVersion = options.libVersion
+    opts.libVersion = options.libVersion;
 
     // Path for html, not for node.
     // opts.revealOptions.math = {
@@ -62,7 +62,7 @@ function render() {
         });
     }
     else {
-        console.log(markdownPath + ' not exists');
+        console.error(markdownPath + ' not exists');
     }
 }
 
@@ -110,5 +110,21 @@ function output(html) {
 }
 
 module.exports = {
-    start: start
+    start: function (options) {
+        try {
+            process
+                .on('unhandledRejection', function (reason, p) {
+                    console.error(reason, 'Unhandled Rejection at Promise', p);
+                })
+                .on('uncaughtException', function (err) {
+                    console.error(err, 'Uncaught Exception thrown');
+                    process.exit(1);
+                });
+            start(options);
+        }
+        catch (err) {
+            console.error(err);
+            throw err;
+        }
+    }
 };
